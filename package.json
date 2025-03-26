@@ -14,9 +14,17 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "concurrently": "^8.2.0"
+    "@types/express": "^5.0.1",
+    "@types/jwt-simple": "^0.5.36",
+    "@types/node": "^22.13.13",
+    "concurrently": "^8.2.0",
+    "typescript": "^5.8.2"
   },
   "dependencies": {
-    "mongod": "^2.0.0"
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.13.0",
+    "tsx": "^4.19.3"
   }
 }
