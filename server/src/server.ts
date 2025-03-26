@@ -1,21 +1,24 @@
 import express from 'express';
-import path from 'node:path';
-import db from './config/connection.js';
-import routes from './routes/index.js';
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+import userRoutes from './routes/api/user-routes';  // Importing the user routes
+
+dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+// Middleware to parse incoming requests
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// if we're in production, serve client/build as static assets
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../client/build')));
-}
+// Use user routes for the '/api/users' path
+app.use('/api/users', userRoutes);
 
-app.use(routes);
+// Connect to MongoDB
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/yourDB');
 
-db.once('open', () => {
-  app.listen(PORT, () => console.log(`🌍 Now listening on localhost:${PORT}`));
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
