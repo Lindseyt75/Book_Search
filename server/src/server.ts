@@ -6,7 +6,6 @@ import { expressMiddleware } from "@apollo/server/express4";
 import dotenv from "dotenv";
 import { typeDefs, resolvers } from "./schemas/index.js";
 import db from "./config/connection.js";
-import { fileURLToPath } from "node:url";
 
 // Load environment variables
 dotenv.config();
