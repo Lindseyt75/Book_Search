@@ -34,7 +34,7 @@ const startApolloServer = async () => {
 
   app.use('/graphql', expressMiddleware(server));
 
-  if (process.env.NODE_ENV === "production") {
+  if (process.env.NODE_ENV !== "development") {
     app.use(express.static(path.join(__dirname, "../../client/dist")));
 
     app.get("*", (_req: Request, res: Response) => {
